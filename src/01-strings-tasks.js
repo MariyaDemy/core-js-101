@@ -267,20 +267,12 @@ const alphabetMap = {
   Z: 25,
 };
 
-function isUpperCaseChar(char) {
-  return char === char.toUpperCase();
-}
-
 function encodeToRot13(str) {
   let accumulator = '';
   let char;
 
   for (let i = 0; i < str.length; i += 1) {
-    if (isUpperCaseChar(str[i])) {
-      char = str[i];
-    } else {
-      char = str[i].toUpperCase();
-    }
+    char = str[i].toUpperCase();
 
     if (Object.prototype.hasOwnProperty.call(alphabetMap, char)) {
       const letterNumber = alphabetMap[char];
@@ -294,7 +286,7 @@ function encodeToRot13(str) {
       const encodedLetter = Object.keys(alphabetMap)
         .find((key) => alphabetMap[key] === decodedNumber);
 
-      accumulator += isUpperCaseChar(str[i]) ? encodedLetter : encodedLetter.toLowerCase();
+      accumulator += char === str[i] ? encodedLetter : encodedLetter.toLowerCase();
     } else {
       accumulator += str[i];
     }
